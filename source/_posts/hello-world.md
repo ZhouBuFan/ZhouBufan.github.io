@@ -1,8 +1,29 @@
 ---
 title: 欢迎来到我的博客
 date: 2025-01-05 10:30:00
+updated: 2025-01-05 10:30:00
 tags: [博客, 技术, 学习]
 categories: [生活]
+keywords: [个人博客, 技术分享, 学习笔记, Hexo, 编程]
+description: 欢迎来到我的个人技术博客！这里分享技术心得、记录学习历程，包含编程经验、项目开发、读书笔记等内容。
+top_img: /img/index.jpg
+cover: /img/index.jpg
+comments: true
+toc: true
+toc_number: true
+toc_style_simple: false
+copyright: true
+copyright_author: ZhouBufan
+copyright_author_href: https://zhoubufan.github.io
+copyright_url: https://zhoubufan.github.io/2025/01/05/hello-world/
+copyright_info: 本文采用 CC BY-NC-SA 4.0 协议，转载请注明出处。
+mathjax: false
+katex: false
+aplayer: false
+highlight_shrink: false
+aside: true
+abcjs: false
+noticeOutdate: true
 ---
 
 # 欢迎来到我的个人博客！

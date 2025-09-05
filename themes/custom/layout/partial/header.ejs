@@ -1,25 +1,77 @@
 <header class="header">
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <a href="<%- url_for('/') %>">
-          <h1><%= config.title %></h1>
+  <div class="header-content">
+    <div class="logo">
+      <a href="<%- url_for('/') %>">
+        <h1><%= config.title %></h1>
+      </a>
+    </div>
+    
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#" class="nav-link search-toggle">
+            <i class="fas fa-search"></i>
+            <span>搜尋</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/') %>" class="nav-link">
+            <i class="fas fa-home"></i>
+            <span>首頁</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/archives/') %>" class="nav-link">
+            <i class="fas fa-archive"></i>
+            <span>歸檔</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/tags/') %>" class="nav-link">
+            <i class="fas fa-tags"></i>
+            <span>標籤</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/categories/') %>" class="nav-link">
+            <i class="fas fa-folder"></i>
+            <span>分類</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/gallery/') %>" class="nav-link">
+            <i class="fas fa-images"></i>
+            <span>圖庫</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/talking/') %>" class="nav-link">
+            <i class="fas fa-comment"></i>
+            <span>說說</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/links/') %>" class="nav-link">
+            <i class="fas fa-link"></i>
+            <span>示例</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<%- url_for('/about/') %>" class="nav-link">
+            <i class="fas fa-user"></i>
+            <span>關於</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="header-actions">
+      <div class="language-switch">
+        <a href="#" class="nav-link">
+          <i class="fas fa-globe"></i>
+          <span>語言</span>
         </a>
-        <p class="subtitle"><%= config.subtitle %></p>
       </div>
-      
-      <nav class="nav">
-        <ul class="nav-list">
-          <% for (var i in theme.menu) { %>
-            <li class="nav-item">
-              <a href="<%- url_for(theme.menu[i]) %>" class="nav-link">
-                <%= i %>
-              </a>
-            </li>
-          <% } %>
-        </ul>
-      </nav>
-      
       <div class="mobile-menu-toggle">
         <i class="fas fa-bars"></i>
       </div>
