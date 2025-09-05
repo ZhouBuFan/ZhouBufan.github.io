@@ -6,12 +6,15 @@ version: 1.0.0
 description: 自定义Hexo主题
 author: ZhouBufan
 
-# 导航菜单
+# 导航菜单 - Butterfly风格
 menu:
   首页: /
   归档: /archives/
   分类: /categories/
   标签: /tags/
+  图库: /gallery/
+  说说: /talking/
+  示例: /links/
   关于: /about/
 
 # 侧边栏设置
