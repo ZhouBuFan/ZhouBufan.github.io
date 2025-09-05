@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="<%- url_for('/') %>">
+          <h1><%= config.title %></h1>
+        </a>
+        <p class="subtitle"><%= config.subtitle %></p>
+      </div>
+      
+      <nav class="nav">
+        <ul class="nav-list">
+          <% for (var i in theme.menu) { %>
+            <li class="nav-item">
+              <a href="<%- url_for(theme.menu[i]) %>" class="nav-link">
+                <%= i %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+      
+      <div class="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </div>
+</header>

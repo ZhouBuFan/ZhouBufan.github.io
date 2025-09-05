@@ -1,0 +1,18 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <p>&copy; <%= new Date().getFullYear() %> <%= config.author %>. All rights reserved.</p>
+        <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme by <a href="https://github.com/ZhouBufan" target="_blank">ZhouBufan</a></p>
+      </div>
+      
+      <div class="social-links">
+        <% for (var i in theme.social) { %>
+          <a href="<%= theme.social[i] %>" target="_blank" class="social-link">
+            <i class="fab fa-<%= i.toLowerCase() %>"></i>
+          </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</footer>

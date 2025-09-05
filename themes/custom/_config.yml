@@ -1,0 +1,60 @@
+# Custom Theme Configuration
+
+# 主题信息
+name: Custom
+version: 1.0.0
+description: 自定义Hexo主题
+author: ZhouBufan
+
+# 导航菜单
+menu:
+  首页: /
+  归档: /archives/
+  分类: /categories/
+  标签: /tags/
+  关于: /about/
+
+# 侧边栏设置
+sidebar:
+  enable: true
+  position: right
+  display: post
+
+# 社交链接
+social:
+  GitHub: https://github.com/ZhouBufan
+  Email: mailto:your-email@example.com
+  Twitter: https://twitter.com/your-username
+
+# 搜索设置
+search:
+  enable: true
+  path: search.xml
+
+# 代码高亮
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: true
+  tab_replace: ''
+
+# 数学公式
+math:
+  enable: true
+  engine: mathjax
+
+# 评论系统
+comment:
+  enable: false
+  service: disqus
+  shortname: your-disqus-shortname
+
+# 统计
+analytics:
+  enable: false
+  google: your-google-analytics-id
+  baidu: your-baidu-analytics-id
+
+# 其他设置
+fancybox: true
+rss: /atom.xml
