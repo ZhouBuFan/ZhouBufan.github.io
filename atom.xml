@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ZhouBufan&#39;s Blog</title>
+  
+  <subtitle>个人技术博客</subtitle>
+  <link href="https://zhoubufan.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://zhoubufan.github.io/"/>
+  <updated>2025-01-05T02:30:00.000Z</updated>
+  <id>https://zhoubufan.github.io/</id>
+  
+  <author>
+    <name>ZhouBufan</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>欢迎来到我的博客</title>
+    <link href="https://zhoubufan.github.io/2025/01/05/hello-world/"/>
+    <id>https://zhoubufan.github.io/2025/01/05/hello-world/</id>
+    <published>2025-01-05T02:30:00.000Z</published>
+    <updated>2025-01-05T02:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="欢迎来到我的个人博客！"><a href="#欢迎来到我的个人博客！" class="headerlink" title="欢迎来到我的个人博客！"></a>欢迎来到我的个人博客！</h1><p>你好！欢迎来到我的个人技术博客。这里是我分享技术心得、记录学习历程的地方。</p><h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我是 ZhouBufan，一名热爱技术的开发者。这个博客将记录我在技术路上的点点滴滴，包括：</p><ul><li>📚 技术学习笔记</li><li>💡 编程心得分享</li><li>🔧 项目开发经验</li><li>📖 读书笔记</li><li>🌟 生活感悟</li></ul><h2 id="博客特色"><a href="#博客特色" class="headerlink" title="博客特色"></a>博客特色</h2><p>这个博客使用 <a href="https://hexo.io/">Hexo</a> 静态博客框架搭建，具有以下特点：</p><ul><li>🚀 快速加载</li><li>📱 响应式设计</li><li>🔍 SEO 友好</li><li>🎨 简洁美观</li></ul><h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><p>如果你也想搭建类似的博客，可以查看 <a href="https://hexo.io/docs/">Hexo 官方文档</a>。</p><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建新文章</span></span><br><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地服务器</span></span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署到 GitHub Pages</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure><p>感谢你的访问，希望你能在这里找到有用的内容！</p><hr><p><em>最后更新时间：2025年1月5日</em></p>]]></content>
+    
+    
+    <summary type="html">欢迎来到我的个人技术博客！这里分享技术心得、记录学习历程，包含编程经验、项目开发、读书笔记等内容。</summary>
+    
+    
+    
+    <category term="生活" scheme="https://zhoubufan.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="博客" scheme="https://zhoubufan.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+    <category term="技术" scheme="https://zhoubufan.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="学习" scheme="https://zhoubufan.github.io/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+</feed>
