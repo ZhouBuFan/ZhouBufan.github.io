@@ -1,0 +1,207 @@
+<!-- 侧边栏 -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-content">
+    
+    <!-- 作者卡片 -->
+    <% if (theme.aside && theme.aside.card_author && theme.aside.card_author.enable) { %>
+      <div class="card card-author">
+        <div class="card-content">
+          <div class="author-info">
+            <% if (theme.avatar && theme.avatar.img) { %>
+              <div class="author-avatar">
+                <img src="<%- url_for(theme.avatar.img) %>" alt="<%= config.author %>" class="avatar-img">
+              </div>
+            <% } %>
+            <div class="author-details">
+              <h3 class="author-name"><%= config.author %></h3>
+              <% if (theme.aside.card_author.description) { %>
+                <p class="author-desc"><%= theme.aside.card_author.description %></p>
+              <% } %>
+              <% if (theme.aside.card_author.button && theme.aside.card_author.button.enable) { %>
+                <a href="<%= theme.aside.card_author.button.link %>" class="author-button" target="_blank">
+                  <i class="<%= theme.aside.card_author.button.icon %>"></i>
+                  <%= theme.aside.card_author.button.text %>
+                </a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 公告卡片 -->
+    <% if (theme.aside && theme.aside.card_announcement && theme.aside.card_announcement.enable) { %>
+      <div class="card card-announcement">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-bullhorn"></i>
+            公告
+          </h3>
+          <div class="card-body">
+            <p><%= theme.aside.card_announcement.content %></p>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 最新文章 -->
+    <% if (theme.aside && theme.aside.card_recent_post && theme.aside.card_recent_post.enable) { %>
+      <div class="card card-recent-post">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-clock"></i>
+            最新文章
+          </h3>
+          <div class="card-body">
+            <ul class="recent-post-list">
+              <% site.posts.sort('date', -1).limit(theme.aside.card_recent_post.limit || 5).each(function(post) { %>
+                <li class="recent-post-item">
+                  <a href="<%- url_for(post.path) %>" class="recent-post-link">
+                    <span class="recent-post-title"><%= post.title %></span>
+                    <span class="recent-post-date"><%= post.date.format('MM-DD') %></span>
+                  </a>
+                </li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 分类 -->
+    <% if (theme.aside && theme.aside.card_categories && theme.aside.card_categories.enable) { %>
+      <div class="card card-categories">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-folder"></i>
+            分类
+          </h3>
+          <div class="card-body">
+            <div class="category-list">
+              <% site.categories.sort('length', -1).limit(theme.aside.card_categories.limit || 8).each(function(category) { %>
+                <a href="<%- url_for(category.path) %>" class="category-item">
+                  <span class="category-name"><%= category.name %></span>
+                  <span class="category-count">(<%= category.length %>)</span>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 标签 -->
+    <% if (theme.aside && theme.aside.card_tags && theme.aside.card_tags.enable) { %>
+      <div class="card card-tags">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-tags"></i>
+            标签
+          </h3>
+          <div class="card-body">
+            <div class="tag-list">
+              <% site.tags.sort('length', -1).limit(theme.aside.card_tags.limit || 40).each(function(tag) { %>
+                <a href="<%- url_for(tag.path) %>" class="tag-item">
+                  <%= tag.name %>
+                  <span class="tag-count">(<%= tag.length %>)</span>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 归档 -->
+    <% if (theme.aside && theme.aside.card_archives && theme.aside.card_archives.enable) { %>
+      <div class="card card-archives">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-archive"></i>
+            归档
+          </h3>
+          <div class="card-body">
+            <div class="archive-list">
+              <% 
+                var archives = {};
+                site.posts.sort('date', -1).each(function(post) {
+                  var year = post.date.format('YYYY');
+                  var month = post.date.format('MM');
+                  if (!archives[year]) {
+                    archives[year] = {};
+                  }
+                  if (!archives[year][month]) {
+                    archives[year][month] = 0;
+                  }
+                  archives[year][month]++;
+                });
+                
+                for (var year in archives) {
+                  if (archives.hasOwnProperty(year)) {
+              %>
+                <div class="archive-year">
+                  <h4 class="archive-year-title"><%= year %></h4>
+                  <ul class="archive-month-list">
+                    <% 
+                      var months = archives[year];
+                      for (var month in months) {
+                        if (months.hasOwnProperty(month)) {
+                    %>
+                      <li class="archive-month">
+                        <a href="<%- url_for('/archives/' + year + '/' + month) %>" class="archive-month-link">
+                          <span class="archive-month-name"><%= month %>月</span>
+                          <span class="archive-month-count">(<%= months[month] %>)</span>
+                        </a>
+                      </li>
+                    <% 
+                        }
+                      }
+                    %>
+                  </ul>
+                </div>
+              <% 
+                  }
+                }
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- 网站信息 -->
+    <% if (theme.aside && theme.aside.card_webinfo && theme.aside.card_webinfo.enable) { %>
+      <div class="card card-webinfo">
+        <div class="card-content">
+          <h3 class="card-title">
+            <i class="fas fa-chart-line"></i>
+            网站信息
+          </h3>
+          <div class="card-body">
+            <div class="webinfo-list">
+              <% if (theme.aside.card_webinfo.post_count) { %>
+                <div class="webinfo-item">
+                  <span class="webinfo-label">文章数:</span>
+                  <span class="webinfo-value"><%= site.posts.length %></span>
+                </div>
+              <% } %>
+              <% if (theme.aside.card_webinfo.last_push_date) { %>
+                <div class="webinfo-item">
+                  <span class="webinfo-label">最后更新:</span>
+                  <span class="webinfo-value"><%= site.posts.sort('date', -1).first().date.format('YYYY-MM-DD') %></span>
+                </div>
+              <% } %>
+              <% if (theme.busuanzi && theme.busuanzi.site_uv) { %>
+                <div class="webinfo-item">
+                  <span class="webinfo-label">访问量:</span>
+                  <span class="webinfo-value" id="busuanzi_value_site_uv">-</span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</aside>

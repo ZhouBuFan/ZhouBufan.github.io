@@ -1,56 +1,87 @@
+<!-- 页脚 -->
 <footer class="footer">
-  <div class="footer-content">
-    <div class="footer-nav">
-      <div class="footer-section">
-        <h3>文档</h3>
-        <ul>
-          <li><a href="/">🚀 快速开始</a></li>
-          <li><a href="/archives/">📑 主题页面</a></li>
-          <li><a href="/categories/">📌 主题配置</a></li>
-          <li><a href="/tags/">⚔️ 标签外挂</a></li>
-          <li><a href="/about/">❓ 主题问答</a></li>
-          <li><a href="/links/">⚡️ 进阶教程</a></li>
+  <div class="container">
+    <div class="footer-content">
+      <!-- 网站信息 -->
+      <div class="footer-info">
+        <div class="footer-title">
+          <h3><%= config.title %></h3>
+          <p><%= config.description %></p>
+        </div>
+        
+        <!-- 社交链接 -->
+        <% if (theme.social) { %>
+          <div class="footer-social">
+            <% for (var i in theme.social) { %>
+              <% var socialItem = theme.social[i]; %>
+              <% var socialUrl = socialItem.split('||')[0].trim(); %>
+              <% var socialText = socialItem.split('||')[1] ? socialItem.split('||')[1].trim() : ''; %>
+              <% var socialColor = socialItem.split('||')[2] ? socialItem.split('||')[2].trim() : '#666'; %>
+              <a href="<%= socialUrl %>" class="social-link" target="_blank" data-color="<%= socialColor %>">
+                <i class="<%= i %>"></i>
+                <span><%= socialText %></span>
+              </a>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- 快速链接 -->
+      <div class="footer-links">
+        <h4>快速链接</h4>
+        <ul class="footer-menu">
+          <% if (theme.menu) { %>
+            <% for (var i in theme.menu) { %>
+              <% var menuItem = theme.menu[i]; %>
+              <% var menuUrl = menuItem.split('||')[0].trim(); %>
+              <li><a href="<%- url_for(menuUrl) %>"><%= i %></a></li>
+            <% } %>
+          <% } %>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h3>其他</h3>
-        <ul>
-          <li><a href="/gallery/">图库</a></li>
-          <li><a href="/talking/">留言板</a></li>
-          <li><a href="/talking/">说说</a></li>
-          <li><a href="/links/">示例</a></li>
-          <li><a href="/links/">友链</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>框架</h3>
-        <ul>
-          <li><a href="https://hexo.io/" target="_blank">Hexo</a></li>
-          <li><a href="https://butterfly.js.org/" target="_blank">Butterfly</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>语言</h3>
-        <ul>
-          <li><a href="/">中文</a></li>
-          <li><a href="/en/">English</a></li>
-        </ul>
+
+      <!-- 统计信息 -->
+      <div class="footer-stats">
+        <h4>网站统计</h4>
+        <div class="stats-list">
+          <% if (theme.busuanzi && theme.busuanzi.site_pv) { %>
+            <div class="stat-item">
+              <span class="stat-label">访问量:</span>
+              <span class="stat-value" id="busuanzi_value_site_pv">-</span>
+            </div>
+          <% } %>
+          <% if (theme.busuanzi && theme.busuanzi.site_uv) { %>
+            <div class="stat-item">
+              <span class="stat-label">访客数:</span>
+              <span class="stat-value" id="busuanzi_value_site_uv">-</span>
+            </div>
+          <% } %>
+          <div class="stat-item">
+            <span class="stat-label">文章数:</span>
+            <span class="stat-value"><%= site.posts.length %></span>
+          </div>
+        </div>
       </div>
     </div>
-    
+
+    <!-- 版权信息 -->
     <div class="footer-bottom">
-      <div class="footer-info">
-        <p>&copy; 2019 - <%= new Date().getFullYear() %> By <%= config.author %> | 框架 <a href="https://hexo.io/" target="_blank">Hexo</a> | 主题 <a href="https://github.com/ZhouBufan" target="_blank">Custom</a></p>
-      </div>
-      
-      <div class="social-links">
-        <% for (var i in theme.social) { %>
-          <a href="<%= theme.social[i] %>" target="_blank" class="social-link">
-            <i class="fab fa-<%= i.toLowerCase() %>"></i>
-          </a>
+      <div class="copyright">
+        <p>
+          © <%= new Date().getFullYear() %> 
+          <% if (theme.footer && theme.footer.owner && theme.footer.owner.since) { %>
+            <%= theme.footer.owner.since %>-<%= new Date().getFullYear() %>
+          <% } %>
+          <a href="<%- url_for('/') %>"><%= config.author %></a>
+          <% if (theme.footer && theme.footer.copyright && theme.footer.copyright.enable) { %>
+            | 基于 <a href="https://hexo.io" target="_blank">Hexo</a> 构建
+            <% if (theme.footer.copyright.version) { %>
+              | 主题版本: <%= theme.version %>
+            <% } %>
+          <% } %>
+        </p>
+        <% if (theme.footer && theme.footer.custom_text) { %>
+          <p><%= theme.footer.custom_text %></p>
         <% } %>
       </div>
     </div>

@@ -1,35 +1,133 @@
-<!-- JavaScript -->
-<script src="<%- url_for('js/main.js') %>"></script>
+<!-- 脚本文件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- 代码高亮 -->
-<% if (theme.highlight.enable) { %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-  <script>hljs.highlightAll();</script>
-<% } %>
-
-<!-- 数学公式 -->
-<% if (theme.math.enable) { %>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- 暗黑模式切换 -->
+<% if (theme.darkmode && theme.darkmode.enable) { %>
   <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    // 暗黑模式功能
+    (function() {
+      const darkModeToggle = document.querySelector('.darkmode-toggle');
+      const body = document.body;
+      
+      // 检查本地存储的暗黑模式设置
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      if (isDarkMode) {
+        body.classList.add('dark');
       }
-    };
+      
+      // 自动切换模式
+      <% if (theme.darkmode.autoChangeMode === 1) { %>
+        const now = new Date();
+        const hour = now.getHours();
+        const start = <%= theme.darkmode.start || 18 %>;
+        const end = <%= theme.darkmode.end || 6 %>;
+        
+        if (hour >= start || hour < end) {
+          body.classList.add('dark');
+        }
+      <% } %>
+      
+      // 切换按钮事件
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+          body.classList.toggle('dark');
+          const isDark = body.classList.contains('dark');
+          localStorage.setItem('darkMode', isDark);
+        });
+      }
+    })();
   </script>
 <% } %>
 
-<!-- 统计代码 -->
-<% if (theme.analytics.enable) { %>
-  <% if (theme.analytics.google) { %>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.analytics.google %>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<%= theme.analytics.google %>');
-    </script>
-  <% } %>
+<!-- 返回顶部 -->
+<script>
+  (function() {
+    const scrollToTop = document.querySelector('.scroll-to-top');
+    
+    if (scrollToTop) {
+      // 显示/隐藏返回顶部按钮
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          scrollToTop.style.display = 'block';
+        } else {
+          scrollToTop.style.display = 'none';
+        }
+      });
+      
+      // 点击返回顶部
+      scrollToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  })();
+</script>
+
+<!-- 移动端菜单 -->
+<script>
+  (function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav');
+    
+    if (mobileMenuToggle && nav) {
+      mobileMenuToggle.addEventListener('click', function() {
+        nav.classList.toggle('mobile-active');
+        mobileMenuToggle.classList.toggle('active');
+      });
+    }
+  })();
+</script>
+
+<!-- 搜索功能 -->
+<% if (theme.search && theme.search.use === 'local_search') { %>
+  <script>
+    // 本地搜索功能
+    (function() {
+      const searchToggle = document.querySelector('.search-toggle');
+      const searchModal = document.createElement('div');
+      searchModal.className = 'search-modal';
+      searchModal.innerHTML = `
+        <div class="search-modal-content">
+          <div class="search-header">
+            <input type="text" class="search-input" placeholder="搜索文章...">
+            <button class="search-close">&times;</button>
+          </div>
+          <div class="search-results"></div>
+        </div>
+      `;
+      document.body.appendChild(searchModal);
+      
+      if (searchToggle) {
+        searchToggle.addEventListener('click', function() {
+          searchModal.style.display = 'flex';
+          searchModal.querySelector('.search-input').focus();
+        });
+      }
+      
+      searchModal.querySelector('.search-close').addEventListener('click', function() {
+        searchModal.style.display = 'none';
+      });
+      
+      // 点击背景关闭
+      searchModal.addEventListener('click', function(e) {
+        if (e.target === searchModal) {
+          searchModal.style.display = 'none';
+        }
+      });
+    })();
+  </script>
 <% } %>
+
+<!-- 统计脚本 -->
+<% if (theme.busuanzi) { %>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<% } %>
+
+<!-- 自定义脚本 -->
+<script src="<%- url_for('/js/main.js') %>"></script>
+
+<!-- 暗黑模式测试脚本 -->
+<script src="<%- url_for('/js/darkmode-test.js') %>"></script>

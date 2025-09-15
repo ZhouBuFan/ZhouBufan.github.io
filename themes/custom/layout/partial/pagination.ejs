@@ -1,22 +1,44 @@
+<!-- 分页 -->
 <% if (page.total > 1) { %>
   <nav class="pagination">
     <div class="pagination-content">
+      <!-- 上一页 -->
       <% if (page.prev) { %>
-        <a href="<%- url_for(page.prev_link) %>" class="pagination-prev">
+        <a href="<%- url_for(page.prev_link) %>" class="pagination-item pagination-prev">
           <i class="fas fa-chevron-left"></i>
-          上一页
+          <span>上一页</span>
         </a>
+      <% } else { %>
+        <span class="pagination-item pagination-prev disabled">
+          <i class="fas fa-chevron-left"></i>
+          <span>上一页</span>
+        </span>
       <% } %>
-      
-      <div class="pagination-info">
-        第 <%= page.current %> 页，共 <%= page.total %> 页
+
+      <!-- 页码 -->
+      <div class="pagination-numbers">
+        <% for (var i = 1; i <= page.total; i++) { %>
+          <% if (i === page.current) { %>
+            <span class="pagination-item pagination-number current"><%= i %></span>
+          <% } else { %>
+            <a href="<%- url_for(page.path + (i === 1 ? '' : 'page/' + i + '/')) %>" class="pagination-item pagination-number">
+              <%= i %>
+            </a>
+          <% } %>
+        <% } %>
       </div>
-      
+
+      <!-- 下一页 -->
       <% if (page.next) { %>
-        <a href="<%- url_for(page.next_link) %>" class="pagination-next">
-          下一页
+        <a href="<%- url_for(page.next_link) %>" class="pagination-item pagination-next">
+          <span>下一页</span>
           <i class="fas fa-chevron-right"></i>
         </a>
+      <% } else { %>
+        <span class="pagination-item pagination-next disabled">
+          <span>下一页</span>
+          <i class="fas fa-chevron-right"></i>
+        </span>
       <% } %>
     </div>
   </nav>

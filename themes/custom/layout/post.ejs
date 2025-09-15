@@ -1,56 +1,141 @@
-<article class="post">
-  <div class="container">
-    <div class="post-content">
-      <header class="post-header">
+<!-- 文章页面 -->
+<div class="post-page">
+  <!-- 文章头部 -->
+  <div class="post-header">
+    <% if (page.top_img || theme.default_top_img) { %>
+      <div class="post-top-img" style="background-image: url('<%- url_for(page.top_img || theme.default_top_img) %>')">
+        <div class="post-top-img-content">
+          <h1 class="post-title"><%= page.title %></h1>
+          <div class="post-meta">
+            <div class="post-meta-item">
+              <i class="far fa-calendar"></i>
+              <time><%= page.date.format('YYYY-MM-DD') %></time>
+            </div>
+            <% if (page.categories && page.categories.length) { %>
+              <div class="post-meta-item">
+                <i class="fas fa-folder"></i>
+                <% page.categories.each(function(category) { %>
+                  <a href="<%- url_for(category.path) %>" class="post-category"><%= category.name %></a>
+                <% }) %>
+              </div>
+            <% } %>
+            <% if (page.tags && page.tags.length) { %>
+              <div class="post-meta-item">
+                <i class="fas fa-tags"></i>
+                <% page.tags.each(function(tag) { %>
+                  <a href="<%- url_for(tag.path) %>" class="post-tag"><%= tag.name %></a>
+                <% }) %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+      <div class="post-header-content">
         <h1 class="post-title"><%= page.title %></h1>
-        
         <div class="post-meta">
           <div class="post-meta-item">
             <i class="far fa-calendar"></i>
-            <time class="post-date"><%= page.date.format('YYYY-MM-DD') %></time>
+            <time><%= page.date.format('YYYY-MM-DD') %></time>
           </div>
-          
           <% if (page.categories && page.categories.length) { %>
             <div class="post-meta-item">
-              <i class="far fa-folder"></i>
-              <%- list_categories(page.categories, {show_count: false, class: 'category-link'}) %>
+              <i class="fas fa-folder"></i>
+              <% page.categories.each(function(category) { %>
+                <a href="<%- url_for(category.path) %>" class="post-category"><%= category.name %></a>
+              <% }) %>
             </div>
           <% } %>
-          
           <% if (page.tags && page.tags.length) { %>
             <div class="post-meta-item">
               <i class="fas fa-tags"></i>
-              <%- list_tags(page.tags, {show_count: false, class: 'tag-link'}) %>
+              <% page.tags.each(function(tag) { %>
+                <a href="<%- url_for(tag.path) %>" class="post-tag"><%= tag.name %></a>
+              <% }) %>
             </div>
           <% } %>
         </div>
-      </header>
-      
-      <div class="post-body">
-        <%- page.content %>
       </div>
-      
-      <footer class="post-footer">
-        <div class="post-nav">
-          <% if (page.prev) { %>
-            <div class="post-nav-prev">
-              <a href="<%- url_for(page.prev.path) %>">
-                <i class="fas fa-arrow-left"></i>
-                <%= page.prev.title %>
-              </a>
+    <% } %>
+  </div>
+
+  <div class="container">
+    <div class="post-content-wrapper">
+      <!-- 文章内容 -->
+      <main class="post-content">
+        <article class="post-article">
+          <%- page.content %>
+        </article>
+
+        <!-- 文章版权 -->
+        <% if (theme.post_copyright && theme.post_copyright.enable) { %>
+          <div class="post-copyright">
+            <div class="copyright-content">
+              <p><strong>本文作者：</strong><%= config.author %></p>
+              <p><strong>本文链接：</strong><a href="<%- url_for(page.permalink) %>"><%- url_for(page.permalink) %></a></p>
+              <p><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="<%= theme.post_copyright.license_url %>" target="_blank"><%= theme.post_copyright.license %></a> 许可协议。转载请注明出处！</p>
             </div>
-          <% } %>
-          
-          <% if (page.next) { %>
-            <div class="post-nav-next">
-              <a href="<%- url_for(page.next.path) %>">
-                <%= page.next.title %>
-                <i class="fas fa-arrow-right"></i>
-              </a>
+          </div>
+        <% } %>
+
+        <!-- 相关文章 -->
+        <% if (theme.related_post && theme.related_post.enable) { %>
+          <div class="related-posts">
+            <h3 class="related-posts-title">相关文章</h3>
+            <div class="related-posts-list">
+              <% site.posts.sort('date', -1).limit(theme.related_post.limit || 6).each(function(post) { %>
+                <% if (post.path !== page.path) { %>
+                  <div class="related-post-item">
+                    <a href="<%- url_for(post.path) %>" class="related-post-link">
+                      <h4 class="related-post-title"><%= post.title %></h4>
+                      <p class="related-post-excerpt"><%= post.excerpt || post.content.substring(0, 100) + '...' %></p>
+                      <span class="related-post-date"><%= post.date.format('YYYY-MM-DD') %></span>
+                    </a>
+                  </div>
+                <% } %>
+              <% }) %>
             </div>
-          <% } %>
-        </div>
-      </footer>
+          </div>
+        <% } %>
+
+        <!-- 文章导航 -->
+        <% if (theme.post_pagination) { %>
+          <div class="post-navigation">
+            <% if (page.prev) { %>
+              <div class="post-nav-item post-nav-prev">
+                <a href="<%- url_for(page.prev.path) %>" class="post-nav-link">
+                  <i class="fas fa-chevron-left"></i>
+                  <span class="post-nav-title"><%= page.prev.title %></span>
+                </a>
+              </div>
+            <% } %>
+            <% if (page.next) { %>
+              <div class="post-nav-item post-nav-next">
+                <a href="<%- url_for(page.next.path) %>" class="post-nav-link">
+                  <span class="post-nav-title"><%= page.next.title %></span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+
+        <!-- 评论系统 -->
+        <% if (theme.comments && theme.comments.use) { %>
+          <div class="post-comments">
+            <h3 class="comments-title">评论</h3>
+            <div class="comments-content">
+              <!-- 这里可以添加评论系统 -->
+              <p>评论功能待实现</p>
+            </div>
+          </div>
+        <% } %>
+      </main>
+
+      <!-- 侧边栏 -->
+      <% if (theme.aside && theme.aside.enable) { %>
+        <%- partial('partial/sidebar') %>
+      <% } %>
     </div>
   </div>
-</article>
+</div>

@@ -1,77 +1,55 @@
-<header class="header">
+<!-- Butterfly 风格导航 -->
+<header class="header" id="header">
   <div class="header-content">
+    <!-- Logo -->
     <div class="logo">
       <a href="<%- url_for('/') %>">
-        <h1><%= config.title %></h1>
+        <% if (theme.nav && theme.nav.logo) { %>
+          <img src="<%- url_for(theme.nav.logo) %>" alt="<%= config.title %>" class="logo-img">
+        <% } %>
+        <% if (theme.nav && theme.nav.display_title !== false) { %>
+          <span class="logo-text"><%= config.title %></span>
+        <% } %>
       </a>
     </div>
     
+    <!-- 导航菜单 -->
     <nav class="nav">
       <ul class="nav-list">
-        <li class="nav-item">
-          <a href="#" class="nav-link search-toggle">
-            <i class="fas fa-search"></i>
-            <span>搜尋</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/') %>" class="nav-link">
-            <i class="fas fa-home"></i>
-            <span>首頁</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/archives/') %>" class="nav-link">
-            <i class="fas fa-archive"></i>
-            <span>歸檔</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/tags/') %>" class="nav-link">
-            <i class="fas fa-tags"></i>
-            <span>標籤</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/categories/') %>" class="nav-link">
-            <i class="fas fa-folder"></i>
-            <span>分類</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/gallery/') %>" class="nav-link">
-            <i class="fas fa-images"></i>
-            <span>圖庫</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/talking/') %>" class="nav-link">
-            <i class="fas fa-comment"></i>
-            <span>說說</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/links/') %>" class="nav-link">
-            <i class="fas fa-link"></i>
-            <span>示例</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<%- url_for('/about/') %>" class="nav-link">
-            <i class="fas fa-user"></i>
-            <span>關於</span>
-          </a>
-        </li>
+        <% if (theme.menu) { %>
+          <% for (var i in theme.menu) { %>
+            <% var menuItem = theme.menu[i]; %>
+            <% var menuText = i; %>
+            <% var menuUrl = menuItem.split('||')[0].trim(); %>
+            <% var menuIcon = menuItem.split('||')[1] ? menuItem.split('||')[1].trim() : ''; %>
+            <li class="nav-item">
+              <a href="<%- url_for(menuUrl) %>" class="nav-link">
+                <% if (menuIcon) { %>
+                  <i class="<%= menuIcon %>"></i>
+                <% } %>
+                <span><%= menuText %></span>
+              </a>
+            </li>
+          <% } %>
+        <% } %>
       </ul>
     </nav>
     
+    <!-- 右侧操作 -->
     <div class="header-actions">
-      <div class="language-switch">
-        <a href="#" class="nav-link">
-          <i class="fas fa-globe"></i>
-          <span>語言</span>
-        </a>
+      <!-- 搜索按钮 -->
+      <div class="search-toggle">
+        <i class="fas fa-search"></i>
       </div>
+      
+      <!-- 暗黑模式切换 -->
+      <% if (theme.darkmode && theme.darkmode.enable) { %>
+        <div class="darkmode-toggle">
+          <i class="fas fa-moon"></i>
+        </div>
+      <% } %>
+      
+      <!-- 移动端菜单按钮 -->
       <div class="mobile-menu-toggle">
         <i class="fas fa-bars"></i>
       </div>
