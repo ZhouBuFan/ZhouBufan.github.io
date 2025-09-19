@@ -148,7 +148,7 @@ index_top_img_height:
 
 # The subtitle on homepage
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect
   effect: true
   # Customize typed.js
@@ -163,7 +163,7 @@ subtitle:
   # 3 - jinrishici.com
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
-  sub:
+  sub: 一万年太久，只争朝夕!
 
 # Article layout on the homepage
 # 1: Cover on the left, info on the right
