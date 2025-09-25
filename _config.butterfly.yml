@@ -93,11 +93,11 @@ category_img:
 category_per_img:
 
 # The background image of footer
-footer_img: false
+footer_img: true
 
 # Website Background
 # Can set it to color or image url
-background:
+background: https://tc.alcy.cc/q/20250908/bd0c13605d1b0802b176798c7918cf8c.webp
 
 cover:
   # Disable the cover or not
