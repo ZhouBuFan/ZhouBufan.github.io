@@ -14,7 +14,6 @@ keywords:
   - 代码分享
   - 前端工具
 description: 详细介绍 CodePen 这个优秀的前端在线代码编辑器，包括其功能特点、使用技巧和实际应用场景。
-cover: https://tc.alcy.cc/q/20250908/38087c347eb74e83978b1e840c68bc76.webp
 comments: true
 toc: true
 toc_number: true
@@ -31,7 +30,7 @@ highlight_shrink: false
 aside: true
 abcjs: false
 noticeOutdate: true
-abbrlink: 28378
+abbrlink: 28377
 date: 2025-09-10 11:00:00
 updated: 2025-09-10 11:00:00
 ---

@@ -5,10 +5,10 @@ tags:
   - PL
 toc: true
 math: false
-abbrlink: 37369
-date: 2025-09-18 11:33:56
 top_img: /img/docs/md-go/advanced-go-programming-book-master/cover.png
 cover: /img/docs/md-go/golang-study-roadmap-imgs/golang-roadmap_01.png
+abbrlink: 37369
+date: 2025-09-18 11:33:56
 ---
 # ChatGPT摘抄
 
