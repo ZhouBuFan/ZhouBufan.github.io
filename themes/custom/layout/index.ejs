@@ -1,0 +1,68 @@
+<div class="home">
+  <div class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title"><%= config.title %></h1>
+      <p class="hero-subtitle"><%= config.description %></p>
+      <div class="hero-actions">
+        <a href="#posts" class="btn btn-primary">开始阅读</a>
+        <a href="/about" class="btn btn-secondary">关于我</a>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('posts').scrollIntoView({behavior: 'smooth'})">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="home-content">
+      
+      <section id="posts" class="posts">
+        <h2 class="section-title">最新文章</h2>
+        <div class="posts-container">
+          <% page.posts.each(function(post) { %>
+            <article class="post-card">
+              <% if (post.cover || post.top_img) { %>
+                <img src="<%- url_for(post.cover || post.top_img) %>" alt="<%= post.title %>" class="post-card-image">
+              <% } else { %>
+                <div class="post-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+              <% } %>
+              
+              <div class="post-card-content">
+                <h3 class="post-card-title">
+                  <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                </h3>
+                
+                <div class="post-card-excerpt">
+                  <%- post.excerpt || post.content.substring(0, 150) + '...' %>
+                </div>
+                
+                <div class="post-card-meta">
+                  <div class="post-card-date">
+                    <i class="far fa-calendar"></i>
+                    <%= post.date.format('YYYY-MM-DD') %>
+                  </div>
+                  
+                  <div class="post-card-tags">
+                    <% if (post.tags && post.tags.length) { %>
+                      <% post.tags.each(function(tag) { %>
+                        <a href="<%- url_for(tag.path) %>" class="post-card-tag">
+                          <i class="fas fa-tag"></i>
+                          <%= tag.name %>
+                        </a>
+                      <% }) %>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        
+        <!-- 分页 -->
+        <%- partial('partial/pagination') %>
+      </section>
+    </div>
+  </div>
+</div>
