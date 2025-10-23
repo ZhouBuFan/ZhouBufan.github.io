@@ -106,13 +106,13 @@ cover:
   archives_enable: true
   # When cover is not set, the default cover is displayed
   default_cover:
-    # - https://www.dmoe.cc/random.php
+    - https://www.dmoe.cc/random.php
     - https://imgapi.cn/api.php?fl=dongman&gs=images
-    # - http://api.fenei.net/api/pc/random.php
-    # - http://api.fenei.net/api/fengjing/random.php
-    # - http://api.fenei.net/api/mc/random.php
+    - http://api.fenei.net/api/pc/random.php
+    - http://api.fenei.net/api/fengjing/random.php
+    - http://api.fenei.net/api/mc/random.php
     - https://t.alcy.cc/
-    # - http://www.98qy.com/sjbz/api.php
+    - http://www.98qy.com/sjbz/api.php
 # Replace Broken Images
 error_img:
   flink: /img/friend_404.gif
