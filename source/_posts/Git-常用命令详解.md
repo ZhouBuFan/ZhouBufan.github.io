@@ -3,6 +3,12 @@ title: Git 常用命令参考
 tags:
   - Git
   - VCS
+keywords:
+  - Git
+  - 版本控制
+  - 分支管理
+  - 提交
+  - 代码管理
 toc: true
 math: false
 abbrlink: 12345
