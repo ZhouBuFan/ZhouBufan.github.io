@@ -10,6 +10,8 @@ keywords:
   - Shell
   - 系统管理
   - 进程管理
+categories:
+  - Linux
 toc: true
 math: false
 abbrlink: 12346

@@ -50,7 +50,7 @@ code_blocks:
 #   icon: link || the description || color
 social:
   fab fa-github: https://github.com/ZhouBuFan || Github || '#24292e'
-  fas fa-envelope: mailto:zhoubufan@example.com || Email || '#4a7dbe'
+  fas fa-envelope: mailto:bufan@mail.com || Email || '#4a7dbe'
   fab fa-twitter: https://twitter.com/zhoubufan || Twitter || '#1da1f2'
   fab fa-linkedin: https://linkedin.com/in/zhoubufan || LinkedIn || '#0077b5'
 
